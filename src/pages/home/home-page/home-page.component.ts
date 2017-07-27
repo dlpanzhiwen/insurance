@@ -13,25 +13,22 @@ export class HomePageComponent implements OnInit {
       "sex":"Male",
       "name_en":"Ryane",
       "github":"ryanemax",
-      "exam1":66,
-      "exam2":66,
-      "exam3":66},
+      "car_no":"辽BXXXXX",
+      "fee":3000},
       {"index":7,
       "name":"小明",
       "sex":"Male",
       "name_en":"Ryane",
       "github":"ryanemax",
-      "exam1":66,
-      "exam2":66,
-      "exam3":66},
+      "car_no":"辽BXXXXX",
+      "fee":5400},
       {"index":14,
       "name":"Chunk",
       "sex":"Male",
       "name_en":"Chunk",
       "github":"chunk",
-      "exam1":76,
-      "exam2":76,
-      "exam3":76}
+      "car_no":"辽BXXXXX",
+      "fee":4300}
   ]
 deleteLast(){
   this.users.pop()
@@ -48,10 +45,9 @@ saveNewUser(){
       "name":"New User",
       "sex":"Male",
       "name_en":"new_user",
-      "github":"new_user",
-      "exam1":76,
-      "exam2":76,
-      "exam3":76
+      "github":"dlpanzhiwen",
+      "car_no":"辽BXXXXX",
+      "fee":this.getRandomInt(3000, 10000)
   })
 }
 
