@@ -1,0 +1,9 @@
+      <div class="col-1" (click)="onUserClick()">[ ]</div>
+      <div class="col-1" (click)="onUserClick()">{{user.id}}</div>
+      <div class="col-1">{{user.name | uppercase | lowercase}}</div>
+      <div class="col-1">{{user.sex | sexName}}</div>
+      <div class="col-1">{{user.startDate}}</div>
+      <div class="col-1">{{user.endDate}}</div>
+      <div class="col-2">{{user.carNo}}</div>
+      <div class="col-1">{{user.fee}}</div>
+      <div class="col-2"><a routerLink="/customer/edit/{{user.id}}">编辑</a>  <span appHighlight (click)="delete()">删除</span></div>
