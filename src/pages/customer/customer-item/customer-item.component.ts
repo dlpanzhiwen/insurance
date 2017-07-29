@@ -27,9 +27,9 @@ export class customerItemComponent implements OnInit {
     }
   }
   delete(){
-    let id = this.user.id
+    let id = this.user.objectId
     this.customerServ.users.forEach((item,index,array)=>{
-      if(item.id == id){
+      if(item.objectId == id){
         array.splice(index,1)
       }
     })

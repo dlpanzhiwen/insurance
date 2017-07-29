@@ -23,27 +23,38 @@ export class customerEditComponent implements OnInit,OnDestroy {
   private location: Location) {
   }
   back(){
-    this.location.back();
+      this.location.go("customer","");
   }
   save(){
-    if(this.isNew){
-      this.customerServ.users.push(this.customer)
-    }
-    this.location.back();
+    // this.customer.startDate = new Date(this.customer.startDate.replace(/-/g, "/"))
+    // this.customer.endDate = new Date(this.customer.endDate.replace(/-/g, "/"))
+    this.customer.fee = Number(this.customer.fee)
+    console.log("666",this.customer)
+    // this.customer.startDate = this.customer.startDate
+    // this.customer.endDate = this.customer.endDate
+    console.log("777",this.customer)
+    this.customerServ.saveCustomer(this.customer).subscribe(data=>{
+      console.log(data)
+      this.location.go("customer","");
+    })
   }
   ngOnInit() {
-    this.getUserSubscribe = this.route.params.subscribe(params=>{
-      this.getcustomer(params['sid']).then(customer=>{
-      console.log(customer)
-      this.customerId = customer.id;
-      this.customer = customer
-    }).catch(err=>{
-      console.log(err)
-    })
-    })
+        this.route.params.subscribe(params=>{
+          let id = params['sid']
+          if(id=="new"){
+            let customer = {name:""}
+            this.isNew = true;
+            this.customer = customer
+          }else{
+            this.customerServ.getCustomerById(id).subscribe(cust=>{
+            console.log(cust)
+            this.customer = cust
+            })
+          }
+        })
   }
   ngOnDestroy(){
-    this.getUserSubscribe.unsubscribe();
+    // this.getUserSubscribe.unsubscribe();
   }
 
   getcustomer(id: any): Promise<any> {
@@ -54,7 +65,7 @@ export class customerEditComponent implements OnInit,OnDestroy {
         this.isNew = true;
         resolve(customer)
       }
-      let customer = this.customerServ.users.find(item=>item.id == id)
+      let customer = this.customerServ.users.find(item=>item.objectId == id)
       if(customer){
         resolve(customer)
       }else{

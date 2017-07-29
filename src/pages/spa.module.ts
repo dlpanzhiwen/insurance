@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { HomeModule } from './home/home.module';
 import { UserModule } from './user/user.module';
 import { AboutModule } from './about/about.module';
+import { StudentModule } from './student/student.module';
+import { RxjsModule } from './rxjs/rxjs.module';
 import { customerModule } from './customer/customer.module';
 
 @NgModule({
@@ -15,6 +17,8 @@ import { customerModule } from './customer/customer.module';
     HomeModule,
     UserModule,
     AboutModule,
+    StudentModule,
+    RxjsModule,
     customerModule
   ],
 })

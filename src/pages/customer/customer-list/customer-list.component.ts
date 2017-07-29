@@ -7,7 +7,11 @@ import {
   Title
 } from '@angular/platform-browser';
 
+import { Http } from '@angular/http';
+
+import {Parse} from "../../../cloud/parse";
 import {customerService} from "../customer.service";
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
@@ -73,9 +77,14 @@ export class customerListComponent implements OnInit {
      [this.users[id - 1], this.users[j]] = [this.users[j], this.users[id - 1]];
   })
   }
-  constructor(meta: Meta, title: Title, private userServ:customerService) {
-    this.users = this.userServ.getUsers()
- 
+  constructor(meta: Meta, title: Title, private http:Http, private userServ:customerService) {
+    //this.users = this.userServ.getUsers()
+    let query = new Parse.Query("Customer",http)
+    query.find().subscribe(data=>{
+      console.log(data)
+      this.users = data
+    })
+
     // Set SEO
     title.setTitle('My Home Page');
 
